@@ -1,10 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://textures/pacoman2.png" type="Texture" id=1]
 [ext_resource path="res://textures/pacoman.png" type="Texture" id=2]
+[ext_resource path="res://textures/pacoman2_rotated.png" type="Texture" id=3]
+[ext_resource path="res://textures/pacoman_roated.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "walk",
@@ -14,11 +21,12 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=2]
 radius = 36.0
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="KinematicBody2D"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "walk"
+animation = "up"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

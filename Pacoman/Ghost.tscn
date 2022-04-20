@@ -14,7 +14,7 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=2]
 radius = 20.3961
 
-[node name="Ghost" type="Area2D"]
+[node name="Ghost" type="KinematicBody2D"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )

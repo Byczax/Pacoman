@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 
 # Declare member variables here. Examples:
@@ -23,6 +23,8 @@ func _process(delta):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
+	if Input.is_action_pressed("exit"):
+		get_tree().quit()
 		
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
