@@ -1,11 +1,10 @@
-# SO2 - Project
+# PIPG / SO2-Project
 
 Game works only on 1920x1080 without any zoom!
 
 ## Problems
 
 - Random map creation
-- Collision with
 
 ## stages
 
