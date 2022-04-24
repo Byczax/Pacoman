@@ -1,9 +1,9 @@
 extends Node
 
 var threads = []
-var threads_nr = 5
+var threads_nr = 10 # max 10
 var coords_for_threads = []
-
+var destination_mutex = Mutex.new() # associated with coords_for_threads
 #both inclusive
 var min_x = 6
 var max_x = 23
@@ -14,20 +14,13 @@ export(PackedScene) var ghost_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#randomize()
+	randomize()
 	for i in range(threads_nr):
 		var coords = get_coordinates()
-		#while coords_for_threads.has(coords):
-		#	coords = get_coordinates()
 		coords_for_threads.append(coords)
 		threads.append(Thread.new())
-		#_handle_ghost(coords)
 		threads[i].start(self, "_handle_ghost", coords)
-		
-	#for thread in threads:
-	#	thread.start(self, "handle_ghost")
-	
-	#get_coordinates()
+
 func get_offset(coords):
 	var mult = 64
 	var add = 32
@@ -38,12 +31,13 @@ func _handle_ghost(coords):
 	#initialize
 	var ghost = ghost_scene.instance()
 	ghost.position = get_offset(coords)
-	call_deferred("add_child", ghost)
-	ghost.move_and_slide(Vector2(1,1))
+	add_child(ghost)
+	#call_deferred("add_child", ghost)
+	#ghost.move_and_slide(Vector2(1,1))
 	
-	yield(get_tree().create_timer(1.0), "timeout")
+	#yield(get_tree().create_timer(1.0), "timeout")
 	#loop
-	var destination_mutex = Mutex.new()
+	
 	var destination = ghost.position
 	while(true):
 		if destination == ghost.position:
@@ -68,9 +62,10 @@ func get_coordinates():
 #func _process(delta):
 #	pass
 func _exit_tree():
-	for thread in threads:
-		thread.wait_to_finish()
-		
+	#for thread in threads:
+	#	thread.wait_to_finish()
+	pass
+	
 func get_new_destination(old_coords):
 	var new_coords = get_coordinates()
 	coords_for_threads.erase(old_coords)
