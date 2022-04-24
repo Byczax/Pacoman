@@ -12,14 +12,15 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 20.3961
+radius = 43.8432
 
 [node name="Ghost" type="KinematicBody2D"]
+scale = Vector2( 0.6, 0.6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 2 )

@@ -22,12 +22,13 @@ animations = [ {
 radius = 36.0
 
 [node name="Player" type="KinematicBody2D"]
+scale = Vector2( 0.6, 0.6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "up"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 2 )
