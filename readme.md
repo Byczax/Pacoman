@@ -1,7 +1,5 @@
 # PIPG / SO2-Project
 
-Game works only on 1920x1080 without any zoom!
-
 ## Problems
 
 - Random map creation
@@ -21,8 +19,8 @@ Game works only on 1920x1080 without any zoom!
 ## todo
 
 - difficulty levels:
-  - teleport only
-  - movement
-  - teleport with movement
+  - teleport only (done)
+  - movement (change Vector2 in Ghost.gd randomly with delay [move_and_collide, move_and_slide])
+  - teleport with movement (combine above) [change idea for selecting new teleportation location]
 - music and audio effects
-- souls "you died" end screen
+- souls like "you died" end screen (after this show main menu button)
