@@ -26,7 +26,7 @@ func _process(delta):
 	if Input.is_action_pressed("exit"):
 		get_tree().quit()
 		
-	move_and_collide(velocity * delta)
+	var collision = move_and_collide(velocity * delta)
 	#if collision:
 	#	print("I collided with ", collision.collider.name)
 		
@@ -37,6 +37,7 @@ func _process(delta):
 		$AnimatedSprite.stop()
 		
 	position += velocity * delta
+	#print(velocity)
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 	
@@ -60,5 +61,7 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+	
+
 	
 

@@ -2,7 +2,7 @@ extends Node
 
 var threads = []
 var threads_nr = 5 # max 10
-var coords_for_threads = []
+var coords_for_threads = [Vector2(6+8, 0+9)]
 var destination_mutex = Mutex.new() # associated with coords_for_threads
 #both inclusive
 var min_x = 6
@@ -13,6 +13,7 @@ var max_y = 16
 var speed = 75
 var velocity = Vector2(1,0)
 var cookies = 0
+var exit = false
 export(PackedScene) var ghost_scene
 export(PackedScene) var cookie_scene
 export(PackedScene) var teleport_scene
@@ -34,17 +35,24 @@ func generate_points():
 			if map.get_cell(i,j) == -1:
 				cookies += 1
 				var cookie = cookie_scene.instance()
-				#cookie.connect("point_collected", self, "point_decrement")
+				cookie.connect("point_collected", self, "decrement")
 				cookie.position = get_offset(Vector2(i,j))
 				add_child(cookie)
 
 func decrement():
+	print(cookies)
+	cookies -= 1
 	pass
 	
 func get_offset(coords):
 	var mult = 64
 	var add = 32
 	return Vector2(coords[0]*mult+add, coords[1]*mult+add)
+	
+func get_undo_offset(coords):
+	var mult = 64
+	var add = 32
+	return Vector2((coords[0]-add)/mult, (coords[1]-add)/mult)
 
 func _handle_ghost(coords):
 	
@@ -63,50 +71,58 @@ func _handle_ghost(coords):
 	var destination = ghost.position
 	var teleport = teleport_scene.instance()
 	add_child(teleport)
-	while(true):
+	while(!exit):
 		#teleport.position = destination
 		#TODO movment
 		if destination == ghost.position:
 			destination_mutex.lock()
-			#print(ghost)
+			print(ghost.position)
 			destination = get_new_destination(ghost.position)
 			destination_mutex.unlock()
 			teleport.position = destination
 		else:
 			ghost.position = destination
+			
 		OS.delay_msec(500 + randi()%500)
 		
-		#pass
 
 func get_coordinates():
 	var map = get_node("Walls")
-	var rand_x = randi()%(max_x-min_x) + min_x
-	var rand_y = randi()%(max_y-min_y) + min_y
-	var coords = Vector2(rand_x, rand_y)
-	if map.get_cell(rand_x, rand_y) == -1:
-		if not coords_for_threads.has(coords):
-			return coords
-	return get_coordinates()
+	var rand_x
+	var rand_y
+	var coords
+	while(true):
+		rand_x = randi()%(max_x-min_x) + min_x
+		rand_y = randi()%(max_y-min_y) + min_y
+		coords = Vector2(rand_x, rand_y)
+		#print(coords)
+		if map.get_cell(rand_x, rand_y) == -1:
+			if not coords_for_threads.has(coords):
+				return coords
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 func _exit_tree():
-	#for thread in threads:
-	#	thread.wait_to_finish()
-	pass
+	exit = true
+	for thread in threads:
+		thread.wait_to_finish()
+#	pass
 	
 func get_new_destination(old_coords):
 	var new_coords = get_coordinates()
-	coords_for_threads.erase(old_coords)
+
+	coords_for_threads.erase(get_undo_offset(old_coords))
+	
 	coords_for_threads.append(new_coords)
+	#print(typeof(old_coords),"|", typeof(new_coords))
+	print(coords_for_threads)
 	#print("new:" + str(new_coords))
 	return get_offset(new_coords)
 	
-	pass
 	
 
-func _on_point_decrement():
-	print("AAAAA")
-	pass # Replace with function body.
+#func _on_point_decrement():
+#	print("AAAAA")
+#	pass # Replace with function body.

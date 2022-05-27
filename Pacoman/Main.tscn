@@ -71,5 +71,3 @@ tile_data = PoolIntArray( 6, 1073741824, 0, 7, 1073741824, 0, 8, 1073741824, 0, 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 928, 609 )
 script = ExtResource( 3 )
-
-[connection signal="point_decrement" from="." to="." method="_on_point_decrement"]

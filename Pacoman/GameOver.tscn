@@ -1,4 +1,10 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/PixelOperator8-Bold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+font_data = ExtResource( 1 )
 
 [node name="GameOver" type="Control"]
 anchor_right = 1.0
@@ -8,5 +14,18 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 1915.0
+margin_bottom = 1076.0
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 128.0
+margin_bottom = 128.0
+custom_colors/font_color = Color( 0.701961, 0.0862745, 0.0862745, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "You died."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
