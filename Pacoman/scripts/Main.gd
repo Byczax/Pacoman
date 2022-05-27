@@ -1,8 +1,8 @@
 extends Node
 
-var threads = []
-var threads_nr = 5 # max 10
-var coords_for_threads = [Vector2(6+8, 0+9)]
+var threads = [] # array for created threads
+var threads_nr = 5 # thread count
+var coords_for_threads = [Vector2(6+8, 0+9)] # critical section with coordinates
 var destination_mutex = Mutex.new() # associated with coords_for_threads
 #both inclusive
 var min_x = 6
@@ -23,10 +23,10 @@ func _ready():
 	randomize()
 	generate_points()
 	for i in range(threads_nr):
-		var coords = get_coordinates()
-		coords_for_threads.append(coords)
-		threads.append(Thread.new())
-		threads[i].start(self, "_handle_ghost", coords)
+		var coords = get_coordinates() # get unique coordinates for each ghost
+		coords_for_threads.append(coords) # add coordinates to critical section
+		threads.append(Thread.new()) # add new thread
+		threads[i].start(self, "_handle_ghost", coords) # start thread as ghost
 
 func generate_points():
 	var map = get_node("Walls")
@@ -75,10 +75,9 @@ func _handle_ghost(coords):
 		#teleport.position = destination
 		#TODO movment
 		if destination == ghost.position:
-			destination_mutex.lock()
-			print(ghost.position)
-			destination = get_new_destination(ghost.position)
-			destination_mutex.unlock()
+			destination_mutex.lock() # block from other ghosts entering
+			destination = get_new_destination(ghost.position) # get new coords
+			destination_mutex.unlock() # allow other ghosts to enter
 			teleport.position = destination
 		else:
 			ghost.position = destination
