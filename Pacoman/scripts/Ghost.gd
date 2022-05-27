@@ -21,7 +21,7 @@ func _process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		if collision.collider.name == "Player":
-			get_tree().change_scene("res://GameOver.tscn")
+			var _value = get_tree().change_scene("res://GameOver.tscn")
 		#print("I collided with ", collision.collider.name)
 	
 	#	velocity =
