@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dark_souls.mp3-351a6bfc83d1fb5f19e64085c38cbbf9.mp3str"
+
+[deps]
+
+source_file="res://sounds/dark_souls.mp3"
+dest_files=[ "res://.import/dark_souls.mp3-351a6bfc83d1fb5f19e64085c38cbbf9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

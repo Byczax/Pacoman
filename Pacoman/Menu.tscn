@@ -19,9 +19,6 @@ script = ExtResource( 3 )
 margin_right = 1920.0
 margin_bottom = 1080.0
 color = Color( 0.141176, 0.0862745, 0.74902, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="."]
 anchor_left = 0.5
@@ -33,9 +30,6 @@ custom_fonts/font = SubResource( 1 )
 text = "Pacoman"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PlayButton" type="Button" parent="."]
 anchor_left = 0.5
@@ -48,9 +42,6 @@ margin_bottom = 60.0
 custom_fonts/font = SubResource( 2 )
 text = "PLAY!"
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="QuitButton" type="Button" parent="."]
 anchor_left = 0.5
