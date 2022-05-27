@@ -23,6 +23,7 @@ func _on_body_entered(body):
 		#signal_bus.emit_signal("on_connect")
 		emit_signal("point_collected")
 		#print("OoO")
+		$EatSound.play()
 		anim_player.play("fade_out")
 	#pass # Replace with function body.
 
