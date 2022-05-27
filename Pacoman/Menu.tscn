@@ -19,6 +19,9 @@ script = ExtResource( 3 )
 margin_right = 1920.0
 margin_bottom = 1080.0
 color = Color( 0.141176, 0.0862745, 0.74902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="."]
 anchor_left = 0.5

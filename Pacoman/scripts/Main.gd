@@ -2,7 +2,7 @@ extends Node
 
 var threads = [] # array for created threads
 var threads_nr = 5 # thread count
-var coords_for_threads = [Vector2(6+8, 0+9)] # critical section with coordinates
+var coords_for_threads = [Vector2(14, 9)] # critical section with coordinates
 var destination_mutex = Mutex.new() # associated with coords_for_threads
 #both inclusive
 var min_x = 6
@@ -30,8 +30,8 @@ func _ready():
 
 func generate_points():
 	var map = get_node("Walls")
-	for i in range(min_x+1, max_x):
-		for j in range (min_y+1, max_y):
+	for i in range(min_x+1, max_x,5):
+		for j in range (min_y+1, max_y,5):
 			if map.get_cell(i,j) == -1:
 				cookies += 1
 				var cookie = cookie_scene.instance()
@@ -42,6 +42,8 @@ func generate_points():
 func decrement():
 	print(cookies)
 	cookies -= 1
+	if cookies == 0:
+		var _void = get_tree().change_scene("res://GameWin.tscn")
 	pass
 	
 func get_offset(coords):
@@ -99,10 +101,6 @@ func get_coordinates():
 			if not coords_for_threads.has(coords):
 				return coords
 
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func _exit_tree():
 	exit = true
 	for thread in threads:
@@ -111,17 +109,6 @@ func _exit_tree():
 	
 func get_new_destination(old_coords):
 	var new_coords = get_coordinates()
-
 	coords_for_threads.erase(get_undo_offset(old_coords))
-	
 	coords_for_threads.append(new_coords)
-	#print(typeof(old_coords),"|", typeof(new_coords))
-	print(coords_for_threads)
-	#print("new:" + str(new_coords))
 	return get_offset(new_coords)
-	
-	
-
-#func _on_point_decrement():
-#	print("AAAAA")
-#	pass # Replace with function body.
