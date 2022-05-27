@@ -1,7 +1,5 @@
 extends Node
 
-signal point_decrement
-
 var threads = []
 var threads_nr = 5 # max 10
 var coords_for_threads = []
