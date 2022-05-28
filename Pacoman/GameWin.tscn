@@ -11,7 +11,7 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "FadeIn"
-length = 5.5
+length = 3.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Label:modulate")
 tracks/0/interp = 1
@@ -19,7 +19,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 5.5 ),
+"times": PoolRealArray( 0, 3.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -48,28 +48,22 @@ font_data = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1920.0
 margin_bottom = 1080.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0, 0.0627451, 1, 1 )
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 margin_top = 128.0
 margin_bottom = 128.0
-custom_colors/font_color = Color( 0.701961, 0.0862745, 0.0862745, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "You win."
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -85,15 +79,15 @@ margin_left = 464.0
 margin_top = 413.0
 margin_right = 1447.0
 margin_bottom = 637.0
-custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.988235, 1, 0, 1 )
-custom_colors/font_color_pressed = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 4 )
 text = "Back to menu"
 flat = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.5
+wait_time = 3.8
 one_shot = true
 autostart = true
 
