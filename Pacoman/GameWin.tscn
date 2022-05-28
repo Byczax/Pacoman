@@ -55,14 +55,14 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1920.0
 margin_bottom = 1080.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.0470588, 0.2, 0.101961, 1 )
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 margin_top = 128.0
 margin_bottom = 128.0
-custom_colors/font_color = Color( 0.701961, 0.0862745, 0.0862745, 1 )
+custom_colors/font_color = Color( 0.0862745, 0.109804, 0.701961, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "You win."
 align = 1

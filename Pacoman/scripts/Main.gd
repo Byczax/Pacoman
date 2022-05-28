@@ -17,6 +17,7 @@ var exit = false
 export(PackedScene) var ghost_scene
 export(PackedScene) var cookie_scene
 export(PackedScene) var teleport_scene
+onready var difficulty = get_node("./Menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,10 +30,11 @@ func _ready():
 		threads[i].start(self, "_handle_ghost", coords) # start thread as ghost
 
 func generate_points():
+	cookies = 0
 	var map = get_node("Walls")
-	for i in range(min_x+1, max_x,5):
-		for j in range (min_y+1, max_y,5):
-			if map.get_cell(i,j) == -1:
+	for i in range(min_x+1, max_x):
+		for j in range (min_y+1, max_y):
+			if map.get_cell(i,j) == -1 and Vector2(i,j) != Vector2(14, 9):
 				cookies += 1
 				var cookie = cookie_scene.instance()
 				cookie.connect("point_collected", self, "decrement")
@@ -63,28 +65,36 @@ func _handle_ghost(coords):
 	ghost.position = get_offset(coords)
 	
 	add_child(ghost)
+	ghost.set_difficulty(GlobalOptions.state)
+	#ghost.speed = 0
 	#var collision = ghost.move_and_collide(Vector2(1,2))
 	#call_deferred("add_child", ghost)
 	#ghost.move_and_slide(Vector2(1,1))
 	
 	#yield(get_tree().create_timer(1.0), "timeout")
 	#loop
-	
+	var new_destination = false
 	var destination = ghost.position
-	var teleport = teleport_scene.instance()
-	add_child(teleport)
+	var teleport
+	if GlobalOptions.state != 1:
+		teleport = teleport_scene.instance()
+		add_child(teleport)
 	while(!exit):
 		#teleport.position = destination
 		#TODO movment
-		if destination == ghost.position:
-			destination_mutex.lock() # block from other ghosts entering
-			destination = get_new_destination(ghost.position) # get new coords
-			destination_mutex.unlock() # allow other ghosts to enter
-			teleport.position = destination
-		else:
-			ghost.position = destination
-			
-		OS.delay_msec(500 + randi()%500)
+		if GlobalOptions.state != 1:
+			if new_destination:
+				destination_mutex.lock() # block from other ghosts entering
+				destination = get_new_destination(ghost.position) # get new coords
+				destination_mutex.unlock() # allow other ghosts to enter
+				teleport.position = destination
+				new_destination = false
+			else:
+				ghost.position = destination
+				new_destination = true
+				
+		ghost.new_direction()
+		OS.delay_msec(1000 + randi()%500)
 		
 
 func get_coordinates():

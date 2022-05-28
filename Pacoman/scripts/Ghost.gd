@@ -2,7 +2,17 @@ extends KinematicBody2D
 
 #var speed = 750
 var velocity = Vector2(0,0)
+var speed = 100
+var difficulty
 
+
+func set_difficulty(level):
+	difficulty = level
+
+func new_direction():
+	if difficulty != 0:
+		velocity = Vector2(speed, (randi()%360))
+	
 #func start(pos, dir):
 #	rotation = dir
 #	position = pos
@@ -22,6 +32,7 @@ func _process(delta):
 	if collision:
 		if collision.collider.name == "Player":
 			var _value = get_tree().change_scene("res://GameOver.tscn")
+		velocity = velocity.bounce(collision.normal)
 		#print("I collided with ", collision.collider.name)
 	
 	#	velocity =

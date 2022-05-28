@@ -16,7 +16,7 @@ func _ready():
 
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://Menu.tscn")
+	var _void = get_tree().change_scene("res://Menu.tscn")
 
 
 func _on_Timer_timeout():
