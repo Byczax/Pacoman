@@ -17,7 +17,6 @@ var exit = false
 export(PackedScene) var ghost_scene
 export(PackedScene) var cookie_scene
 export(PackedScene) var teleport_scene
-onready var difficulty = get_node("./Menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
