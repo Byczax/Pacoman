@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fonts/PixelOperator8-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ghost.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/PixelOperatorMono.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Cookie.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 120
+font_data = ExtResource( 4 )
+
+[node name="Instruction" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0, 0.0627451, 1, 1 )
+
+[node name="PacomanLabel" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 216.0
+margin_top = 137.0
+margin_right = -491.0
+margin_bottom = 169.0
+rect_pivot_offset = Vector2( 539, 16 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Use arrows or WASD keys to move Pacoman"
+align = 1
+valign = 1
+
+[node name="GhostLabel" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 207.0
+margin_top = 303.0
+margin_right = -497.0
+margin_bottom = 335.0
+rect_pivot_offset = Vector2( 539, 16 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Avoid hitting ghosts, as it means game over"
+align = 1
+valign = 1
+
+[node name="GhostLabel2" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 198.0
+margin_top = 492.0
+margin_right = -506.0
+margin_bottom = 524.0
+rect_pivot_offset = Vector2( 539, 16 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Gather all delicious cookies to win"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="."]
+margin_left = 455.0
+margin_top = 765.0
+margin_right = 1438.0
+margin_bottom = 989.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.988235, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Back to menu"
+flat = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.8
+one_shot = true
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1597, 152 )
+
+[node name="Ghost" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1597, 316 )
+
+[node name="Cookie" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1590, 513 )
+
+[connection signal="pressed" from="Button" to="Ghost" method="_on_Button_pressed"]

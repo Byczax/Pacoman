@@ -12,3 +12,7 @@ func _on_Play_button_pressed():
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
+
+
+func _on_HowToPlayButton_pressed():
+	get_tree().change_scene("res://Instruction.tscn")
