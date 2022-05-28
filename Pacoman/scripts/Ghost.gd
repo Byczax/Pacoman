@@ -41,3 +41,7 @@ func _process(delta):
 #		get_tree().change_scene("res://GameOver.tscn")
 #		print("AAAAAAAAA")
 #		pass # Replace with function body.
+
+
+func _on_Button_pressed():
+	get_tree().change_scene("res://Menu.tscn")
