@@ -28,6 +28,7 @@ func _ready():
 		coords_for_threads.append(coords) # add coordinates to critical section
 		threads.append(Thread.new()) # add new thread
 		threads[i].start(self, "_handle_ghost", coords) # start thread as ghost
+		$Soundtrack.play()
 
 func generate_points():
 	cookies = 0

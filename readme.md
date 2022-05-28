@@ -60,7 +60,7 @@ and that's it! easy right? :P
 - [x] user interface
 - [ ] Create documentation (in-game instruction)
 - [x] create graphics
-- [ ] music
+- [x] music
 
 ## Problems
 
@@ -72,5 +72,5 @@ and that's it! easy right? :P
   - [x] teleport only (done)
   - [x] movement (change Vector2 in Ghost.gd randomly with delay [move_and_collide, move_and_slide])
   - [x] teleport with movement (combine above) [change idea for selecting new teleportation location]
-- [ ] music and audio effects
+- [x] music and audio effects
 - [x] souls like "you died" end screen (after this show main menu button)
