@@ -46,30 +46,29 @@ func generate_maze(nr_blocks):
 				if map.get_cell(rand_x, rand_y) == -1 and Vector2(rand_x, rand_y) != PACOMAN_INITIAL_POSITION:
 					break
 			# now rand_x, rand_y coordinates need to be tested
-			var nr_neighbours = 0
-			var neighbours_coords = []
-			for x in [rand_x - 1, rand_x, rand_x + 1]:
-				for y in [rand_y - 1, rand_y, rand_y + 1]:
-					if map.get_cell(x, y) != -1 and !(x == rand_x and y == rand_y):
-						nr_neighbours += 1
-						neighbours_coords.append(Vector2(x, y))
-			if nr_neighbours < 2:
+			var nr_changes = 0
+			if map.get_cell(rand_x - 1, rand_y - 1) != map.get_cell(rand_x - 1, rand_y    ):
+				nr_changes += 1
+			if map.get_cell(rand_x - 1, rand_y    ) != map.get_cell(rand_x - 1, rand_y + 1):
+				nr_changes += 1
+			if map.get_cell(rand_x - 1, rand_y + 1) != map.get_cell(rand_x    , rand_y + 1):
+				nr_changes += 1
+			if map.get_cell(rand_x    , rand_y + 1) != map.get_cell(rand_x + 1, rand_y + 1):
+				nr_changes += 1
+			if map.get_cell(rand_x + 1, rand_y + 1) != map.get_cell(rand_x + 1, rand_y    ):
+				nr_changes += 1
+			if map.get_cell(rand_x + 1, rand_y    ) != map.get_cell(rand_x + 1, rand_y - 1):
+				nr_changes += 1
+			if map.get_cell(rand_x + 1, rand_y - 1) != map.get_cell(rand_x    , rand_y - 1):
+				nr_changes += 1
+			if map.get_cell(rand_x    , rand_y - 1) != map.get_cell(rand_x - 1, rand_y - 1):
+				nr_changes += 1
+			
+			if nr_changes > 2:
+				continue
+			else:
 				map.set_cell(rand_x, rand_y, 0)
 				break
-			elif nr_neighbours >= 4:
-				continue
-			elif nr_neighbours == 2:
-				if abs(neighbours_coords[0].x - neighbours_coords[1].x) == 2 or abs(neighbours_coords[0].y - neighbours_coords[1].y) == 2:
-					continue
-				else:
-					map.set_cell(rand_x, rand_y, 0)
-					break
-			else: #nr_neighbours == 3
-				if abs(neighbours_coords[0].x - neighbours_coords[1].x) == 2 or abs(neighbours_coords[0].y - neighbours_coords[1].y) == 2 or abs(neighbours_coords[0].x - neighbours_coords[2].x) == 2 or abs(neighbours_coords[0].y - neighbours_coords[2].y) == 2 or abs(neighbours_coords[2].x - neighbours_coords[1].x) == 2 or abs(neighbours_coords[2].y - neighbours_coords[1].y) == 2:
-					continue
-				else:
-					map.set_cell(rand_x, rand_y, 0)
-					break
 			
 
 func generate_points():
