@@ -58,19 +58,11 @@ and that's it! easy right? :P
 - [x] enemy moving algorithms (teleportation and movement for enemies)
 - [x] map bounding
 - [x] user interface
-- [ ] Create documentation (in-game instruction)
+- [x] Create documentation (in-game instruction)
 - [x] create graphics
-- [x] music
-
-## Problems
-
-- Random map creation
-
-## todo
-
+- [x] music and audio effects
+- [x] `you died` and `you win` screens
 - [x] difficulty levels:
   - [x] teleport only (done)
   - [x] movement (change Vector2 in Ghost.gd randomly with delay [move_and_collide, move_and_slide])
   - [x] teleport with movement (combine above) [change idea for selecting new teleportation location]
-- [x] music and audio effects
-- [x] souls like "you died" end screen (after this show main menu button)
