@@ -5,9 +5,8 @@
 [ext_resource path="res://sounds/win.mp3" type="AudioStream" id=3]
 [ext_resource path="res://fonts/PixelOperatorMono.ttf" type="DynamicFontData" id=4]
 
-
 [sub_resource type="DynamicFont" id=1]
-size = 128
+size = 80
 font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=2]
@@ -49,6 +48,9 @@ font_data = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1920.0
@@ -91,6 +93,20 @@ flat = true
 wait_time = 3.8
 one_shot = true
 autostart = true
+
+[node name="FinalTime" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+margin_top = 800.0
+margin_bottom = 900.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Your final time"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

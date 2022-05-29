@@ -19,6 +19,7 @@ const NR_BLOCKS = 70
 
 var cookies = 0
 var exit = false
+var time_elapsed = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -67,7 +68,7 @@ func generate_maze(nr_blocks):
 			if nr_changes > 2:
 				continue
 			else:
-				map.set_cell(rand_x, rand_y, 0)
+				map.set_cell(rand_x, rand_y, 1)
 				break
 			
 
@@ -82,6 +83,7 @@ func generate_points():
 				cookie.connect("point_collected", self, "decrement")
 				cookie.position = get_offset(Vector2(i,j))
 				add_child(cookie)
+	$Control/CookieCounter.text = str(cookies)
 
 
 func _handle_ghost(coords):
@@ -114,6 +116,20 @@ func _handle_ghost(coords):
 		OS.delay_msec(1000 + randi()%500)
 	queue_free()
 
+
+func _process(delta: float) -> void:
+	time_elapsed += delta
+	$Control/timer.text = _format_seconds(time_elapsed, true)
+	
+	
+func _format_seconds(time : float, use_milliseconds : bool) -> String:
+	var minutes := time / 60
+	var seconds := fmod(time, 60)
+	if not use_milliseconds:
+		return "%02d:%02d" % [minutes, seconds]
+	var milliseconds := fmod(time, 1) * 100
+	return "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
+	
 func get_coordinates():
 	var map = get_node("Walls")
 	var rand_x
@@ -150,7 +166,9 @@ func get_undo_offset(coords):
 func decrement():
 	#print(cookies)
 	cookies -= 1
+	$Control/CookieCounter.text = str(cookies)
 	if cookies == 0:
+		GlobalOptions.time = time_elapsed
 		var _void = get_tree().change_scene("res://interfaces/GameWin.tscn")
 
 

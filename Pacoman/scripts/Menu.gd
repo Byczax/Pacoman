@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-
 func _process(_delta):
 	if Input.is_action_pressed("exit"):
 		_on_QuitButton_pressed()

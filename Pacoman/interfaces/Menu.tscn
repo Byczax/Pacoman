@@ -95,6 +95,9 @@ text = "Easy"
 align = 1
 items = [ "Easy", null, false, 0, null, "Medium", null, false, 1, null, "Hard", null, false, 2, null ]
 selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_Play_button_pressed"]
 [connection signal="pressed" from="HowToPlayButton" to="." method="_on_HowToPlayButton_pressed"]
