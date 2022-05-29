@@ -1,10 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://fonts/PixelOperator8-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Ghost.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Ghost.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fonts/PixelOperatorMono.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Cookie.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/Cookie.tscn" type="PackedScene" id=5]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 32

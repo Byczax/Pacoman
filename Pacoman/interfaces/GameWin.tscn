@@ -1,9 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://fonts/PixelOperator8-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://GameWin.gd" type="Script" id=2]
+[ext_resource path="res://scripts/GameWin.gd" type="Script" id=2]
 [ext_resource path="res://sounds/win.mp3" type="AudioStream" id=3]
 [ext_resource path="res://fonts/PixelOperatorMono.ttf" type="DynamicFontData" id=4]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
