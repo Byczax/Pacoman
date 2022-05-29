@@ -99,6 +99,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Fullscreen" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 336.0
+margin_top = -292.0
+margin_right = 1008.0
+margin_bottom = -165.0
+rect_rotation = 36.6
+rect_scale = Vector2( 0.3, 0.3 )
+custom_colors/font_color_hover = Color( 0.929412, 1, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Fullscreen?"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_Play_button_pressed"]
 [connection signal="pressed" from="HowToPlayButton" to="." method="_on_HowToPlayButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="Fullscreen" to="." method="_on_Fullscreen_pressed"]
