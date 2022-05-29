@@ -1,6 +1,10 @@
-# Pacoman
+# Pacoman - game with twists 🌪
 
 ![sample-screen](252747.png)
+
+[![license](https://img.shields.io/npm/l/svelte.svg)](LICENSE.md)
+![GitHub Repo stars](https://img.shields.io/github/stars/Byczax/pacoman?style=social)
+![Version](https://img.shields.io/badge/godot-v3.4.2.stable.official-blue)
 
 Pacoman is game created for student project in [Godot game engine](https://godotengine.org/).
 Control Pacoman and eat cookies scattered across the map.
