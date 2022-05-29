@@ -1,6 +1,6 @@
 # Pacoman - game with twists 🌪
 
-![sample-screen](252747.png)
+![sample-screen](252747-2.png)
 
 [![license](https://img.shields.io/npm/l/svelte.svg)](LICENSE.md)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Byczax/pacoman?style=social)
