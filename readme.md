@@ -53,7 +53,7 @@ and that's it! easy right? :P
 ## stages
 
 - [x] Create threading
-- [ ] create map generation
+- [x] create map generation
 - [x] create player/enemy models
 - [x] enemy moving algorithms (teleportation and movement for enemies)
 - [x] map bounding
